@@ -4,9 +4,15 @@ namespace ImageConversionToASCII
 {
     internal class ASCIIArt
     {
+        // Множитель ASCII мзображения
         public static byte multiplier = 1;
 
+        // Хранение изображения в строке
         public static StringBuilder aSCIIImage = new();
+
+        /// <summary>
+        /// Создаёт ASCII изображение на основе обычного изображения 
+        /// </summary>
         public static void CreateASCIIArt()
         {
 
@@ -81,9 +87,13 @@ namespace ImageConversionToASCII
                     aSCIIImage.Append(character);
                 }
             }
+            // Вывод конечного результата
             Console.WriteLine(aSCIIImage.ToString());
         }
 
+        /// <summary>
+        /// Меняет значение множителя в зависимости от введенного числа
+        /// </summary>
         public static void ChangeMultiplier()
         {
             try

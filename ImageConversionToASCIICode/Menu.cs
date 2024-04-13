@@ -4,15 +4,21 @@ using System.Security.Cryptography.Xml;
 
 namespace ImageConversionToASCII
 {
+    /// <summary>
+    /// Класс расширения для класса Menu. Предоставляет дополнительные методы для обработки навигации по меню.
+    /// </summary>
     public static class MenuExt
     {
-        public static ConsoleKey tapKey;
+        /// <summary>
+        /// Обрабатывает нажатие кнопок навигации в меню.
+        /// </summary>
+        /// <param name="menuItems">Список элементов меню.</param>
+        /// <param name="execute">Действие, которое нужно выполнить при выборе элемента.</param>
         public static void ProcessNavigationButton(this List<string> menuItems, Action<int> execute)
         {
             ConsoleKeyInfo keyInfo = Console.ReadKey();
-            tapKey = keyInfo.Key;
 
-            switch (tapKey)
+            switch (keyInfo.Key)
             {
                 case ConsoleKey.UpArrow:
                     Menu.selectedItemIndex = (Menu.selectedItemIndex - 1 + menuItems.Count) % menuItems.Count;
@@ -30,10 +36,15 @@ namespace ImageConversionToASCII
         }
     }
 
+    /// <summary>
+    /// Внутренний класс Menu, который управляет отображением и навигацией по меню.
+    /// </summary>
     internal class Menu
     {
+        // Индекс выбранного элемента меню.
         public static int selectedItemIndex = 0;
 
+        //Список элементов главного меню.
         protected static List<string> mainMenuItems = new()
         {
             $"Загрузить фото (Текущая фотография \"{Program.pathImage}\")",
@@ -42,6 +53,7 @@ namespace ImageConversionToASCII
             $"Изменить масштаб \"детализацию\" отрисовки (Текущий масштаб x{ASCIIArt.multiplier})"
         };
 
+        //Список элементов меню для сохранения ASCII изображения.
         private readonly static List<string> saveMenuASCIIimage = new()
         {
             "Для того чтобы сохранить в буфер обмена",
@@ -49,6 +61,7 @@ namespace ImageConversionToASCII
             "Выход"
         };
 
+        //Список доступных цветов для отображения в меню.
         protected readonly static List<string> menuMainColors = new()
         {
             "Gray",
@@ -62,6 +75,9 @@ namespace ImageConversionToASCII
             "Выход"
         };
 
+        /// <summary>
+        /// Отображает главное меню и обрабатывает навигацию по нему.
+        /// </summary>
         public static void ShowMenu()
         {
             selectedItemIndex = 0;
@@ -75,6 +91,10 @@ namespace ImageConversionToASCII
             }
         }
 
+        /// <summary>
+        /// Отображает элементы меню.
+        /// </summary>
+        /// <param name="menuItems">Список элементов меню для отображения.</param>
         private static void ShowElementsMenu(List<string> menuItems)
         {
             for (int i = 0; i < menuItems.Count; i++)
@@ -91,6 +111,9 @@ namespace ImageConversionToASCII
             }
         }
 
+        /// <summary>
+        /// Отображает диалог выбора файла и обновляет путь к изображению.
+        /// </summary>
         protected static void ShowGetFilePath()
         {
             // Создаем новый экземпляр OpenFileDialog
@@ -113,6 +136,9 @@ namespace ImageConversionToASCII
             mainMenuItems[0] = $"Загрузить фото (Текущая фотография \"{fileName}\")";
         }
 
+        /// <summary>
+        /// Создает ASCII Art изображение и отображает его.
+        /// </summary>
         protected static void ShowCreateASCIIArt()
         {
             ConsoleFullClear();
@@ -123,6 +149,9 @@ namespace ImageConversionToASCII
             NavigationCreateASCIIArt();
         }
 
+        /// <summary>
+        /// Обрабатывает навигацию по созданному ASCII Art изображению.
+        /// </summary>
         private static void NavigationCreateASCIIArt()
         {
             selectedItemIndex = 0;
@@ -133,11 +162,15 @@ namespace ImageConversionToASCII
                 Console.WriteLine(ASCIIArt.aSCIIImage.ToString());
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine();
+
                 ShowElementsMenu(saveMenuASCIIimage);
                 saveMenuASCIIimage.ProcessNavigationButton(MenuExecute.ExecuteSelectedItemSave);
             }
         }
 
+        /// <summary>
+        /// Отображает меню для изменения основного цвета.
+        /// </summary>
         protected static void ShowChangeMainColor()
         {
             selectedItemIndex = 0;
@@ -149,6 +182,9 @@ namespace ImageConversionToASCII
             }
         }
 
+        /// <summary>
+        /// Отображает меню для изменения множителя масштабирования.
+        /// </summary>
         protected static void ShowChangeMultiplier()
         {
             ConsoleFullClear();
@@ -165,6 +201,9 @@ namespace ImageConversionToASCII
             ShowMenu();
         }
 
+        /// <summary>
+        /// Полностью очищает консоль, включая буфер.
+        /// </summary>
         private static void ConsoleFullClear()
         {
             Console.Clear();
@@ -172,11 +211,20 @@ namespace ImageConversionToASCII
         }
     }
 
+    /// <summary>
+    /// Внутренний класс MenuExecute, который наследуется от класса Menu и обрабатывает выполнение выбранных элементов меню.
+    /// </summary>
     internal class MenuExecute : Menu
     {
+        // Основной цвет для отображения ASCII Art изображения.
         public static ConsoleColor consoleColorLight = ConsoleColor.Gray;
+        // Дополнительный цвет для отображения ASCII Art изображения.
         public static ConsoleColor consoleColorDark = ConsoleColor.DarkGray;
 
+        /// <summary>
+        /// Выполняет действие, связанное с выбранным элементом главного меню.
+        /// </summary>
+        /// <param name="selectedItemIndex">Индекс выбранного элемента меню.</param>
         public static void ExecuteSelectedItemMain(int selectedItemIndex)
         {
             switch (selectedItemIndex)
@@ -196,6 +244,10 @@ namespace ImageConversionToASCII
             }
         }
 
+        /// <summary>
+        /// Выполняет действие, связанное с выбранным цветом.
+        /// </summary>
+        /// <param name="selectedItemIndex">Индекс выбранного цвета.</param>
         public static void ExecuteSelectedItemColor(int selectedItemIndex)
         {
 
@@ -257,6 +309,10 @@ namespace ImageConversionToASCII
             ShowMenu();
         }
 
+        /// <summary>
+        /// Выполняет действие, связанное с выбранным способом сохранения ASCII Art изображения.
+        /// </summary>
+        /// <param name="selectedItemIndex">Индекс выбранного способа сохранения.</param>
         public static void ExecuteSelectedItemSave(int selectedItemIndex)
         {
             switch (selectedItemIndex)
