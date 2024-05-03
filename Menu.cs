@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.Xml;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace ImageConversionToASCII
 {
@@ -143,8 +144,17 @@ namespace ImageConversionToASCII
         {
             ConsoleFullClear();
             Console.WriteLine("Подождите, выполняется преобразование...");
+            Console.ForegroundColor = MenuExecute.consoleColorLight;
             ASCIIArt.CreateASCIIArt();
             Console.ResetColor(); // Сброс цвета консоли после отрисовки
+            Console.WriteLine("\nДля выхода нажмите Escape или Backspace...");
+
+            while (true)
+            {
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                if (keyInfo.Key == ConsoleKey.Escape || keyInfo.Key == ConsoleKey.Backspace)
+                    break;
+            }
 
             NavigationCreateASCIIArt();
         }
@@ -158,12 +168,8 @@ namespace ImageConversionToASCII
             while (true)
             {
                 ConsoleFullClear();
-                Console.ForegroundColor = MenuExecute.consoleColorLight;
-                Console.WriteLine(ASCIIArt.aSCIIImage.ToString());
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.WriteLine();
-
                 ShowElementsMenu(saveMenuASCIIimage);
+
                 saveMenuASCIIimage.ProcessNavigationButton(MenuExecute.ExecuteSelectedItemSave);
             }
         }
