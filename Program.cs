@@ -4,7 +4,7 @@ namespace ImageConversionToASCII
     class Program
     {
         //Путь до изображения
-        public static string pathImage = "catGhost.jpg";
+        public static string pathImage = "testImages/catGhost.jpg";
 
         //Имя файла .txt
         public static string nameFile = "ASCIIimage.txt";
