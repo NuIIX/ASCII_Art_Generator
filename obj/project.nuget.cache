@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Upu7m3ghVqM8ijqwEYiH1YZbCB1kiEs3iCfFtcbPjNiLd3ISAHQsOVsBRxsfiimMmc5DtsZKcZHm1dVd1G9gYw==",
+  "success": true,
+  "projectFilePath": "D:\\Git\\Repository\\ImageConversionToASCII\\ImageConversionToASCII.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\maksi\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
+    "C:\\Users\\maksi\\.nuget\\packages\\system.drawing.common\\8.0.4\\system.drawing.common.8.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}
