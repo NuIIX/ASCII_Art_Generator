@@ -22,6 +22,18 @@
     <None Update="mountsWithMoon.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="testImages\bloodMoon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="testImages\catGhost.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="testImages\mountsWithMoon.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="testImages\Triangle.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="testPhoto.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
