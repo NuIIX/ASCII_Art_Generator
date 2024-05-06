@@ -24,8 +24,8 @@ namespace ImageConversionToASCII
             Bitmap bitmap = new(Program.pathImage);
 
             // Вычисляем ширину и высоту консоли
-            int consoleWidth = Console.WindowWidth - 1;
-            int consoleHeight = Console.WindowHeight - 1;
+            int consoleWidth = Console.WindowWidth;
+            int consoleHeight = Console.WindowHeight;
 
             // Определяем ширину и высоту блока пикселей, которые будут заменены одним символом в консоле.
             int blockWidth = (int)Math.Round((double)bitmap.Width / consoleWidth / multiplier);
@@ -87,6 +87,9 @@ namespace ImageConversionToASCII
                     aSCIIImage.Append(character);
                 }
             }
+
+            Program.SetConsoleSize(bitmap.Width / blockWidth, bitmap.Height / blockHeight);
+            Console.ForegroundColor = MenuExecute.consoleColorLight;
             // Вывод конечного результата
             Console.WriteLine(aSCIIImage.ToString());
         }

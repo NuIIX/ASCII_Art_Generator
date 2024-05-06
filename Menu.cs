@@ -144,7 +144,6 @@ namespace ImageConversionToASCII
         {
             ConsoleFullClear();
             Console.WriteLine("Подождите, выполняется преобразование...");
-            Console.ForegroundColor = MenuExecute.consoleColorLight;
             ASCIIArt.CreateASCIIArt();
             Console.ResetColor(); // Сброс цвета консоли после отрисовки
             Console.WriteLine("\nДля выхода нажмите Escape или Backspace...");

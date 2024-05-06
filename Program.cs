@@ -48,5 +48,10 @@ namespace ImageConversionToASCII
             Menu.ShowMenu();
         }
 
+        public static void SetConsoleSize(int width, int height)
+        {
+            Console.SetWindowSize(width, height);
+        }
+
     }
 }
